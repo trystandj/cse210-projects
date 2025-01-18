@@ -26,7 +26,7 @@ public class Journal
         {
             foreach (var entry in _entries)
             {
-                writer.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}");
+                writer.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}|{entry._goals}");
             }
         }
     }
@@ -44,7 +44,8 @@ public class Journal
                 {
                     _date = parts[0],
                     _promptText = parts[1],
-                    _entryText = parts[2]
+                    _entryText = parts[2] != "null" ? parts[2] : null,
+                    _goals = parts[3] != "null" ? parts[3] : null
                 };
                 _entries.Add(entry);
             }
