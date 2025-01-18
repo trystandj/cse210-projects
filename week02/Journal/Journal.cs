@@ -37,7 +37,7 @@ public class Journal
         {
             _entries.Clear();
             string[] lines = File.ReadAllLines(filename);
-            foreach (var line in lines)
+            foreach (string line in lines)
             {
                 string[] parts = line.Split('|');
                 Entry entry = new Entry
