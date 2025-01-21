@@ -1,0 +1,90 @@
+Encapsulation
+is the act of enclosing something, sa if it were in a capsule. It means thinking carefully about the behaviors your classes 
+need and then hiding the details of how they perform those behaviors even making it so other code cannot see or manipulate these details.
+
+public class Account
+{
+    private List<int> _transactions = new List<int>(); 
+
+    public void Deposit(int amount)
+    {
+        _transactions.Add(amount);
+    }
+}
+
+Private will keep it hidden from other pats of the Program
+Public makes it available to other parts of the Program
+
+Good rule is to restrict acccess to class members as much as possible
+
+As a general rule, attributes (or member variables) should be made private. 
+Instead, the other parts of the program should ask the class to perform tasks related to that information through public methods.
+
+public class Person
+{
+    private string _title;
+    private string _firstName;
+    private string _lastName;
+
+    ...
+}
+
+Many methods (or member functions) of a class are public. This is the interface that other parts of the program can use to perform the tasks they need.
+
+Are there ever private methods? Yes! Often, a public method will have internal steps or computations to perform to help it do its job.
+These "helper functions" are often private, because the only code that needs to access them is in the class.
+
+Example:
+public class Person
+{
+    private string _title;
+    private string _firstName;
+    private string _lastName;
+
+    public string GetInformalSignature()
+    {
+        return "Thanks, " + _firstName;
+    }
+
+    public string GetFormalSignature()
+    {
+        return "Sincerely, " + GetFullName();
+    }
+
+    private string GetFullName()
+    {
+        return _title + " " + _firstName + " " + _lastName;
+    }
+    ...
+}
+
+Getters and Setters:
+Someitmes you may feel that other parts of the program need access to a member variable. If this is the case,
+instead of making the variable public, you should create a meathod to get and set the value.
+This ensures that the class still controls access to the evariables and that the variables themselves are hidden
+
+public class Person
+{
+    private string _title;
+    private string _firstName;
+    private string _lastName;
+
+    public string GetFirstName()
+    {
+        return _firstName;
+    }
+
+    public void SetFirstName(string firstName)
+    {
+        _firstName = firstName;
+    }
+
+    ...
+}
+
+Person p = new Person();
+p.SetFirstName("Peter");
+
+Console.WriteLine(p.GetFirstName());
+
+
