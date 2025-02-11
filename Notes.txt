@@ -132,3 +132,80 @@ Console.WriteLine(number);
 
 Brigham
 234
+
+
+
+
+
+Polymorphism the ability to take on many forms. When one line of code can have different behavior depending on the context..
+method overriding is the ability of a child class to override or change the behavior of a meathod that it inherited from a parent class
+the class name stays the same but the behavior or the code to run is different
+
+
+// the parent class showing the "virtual" keyword included
+public class Employee
+{
+  private float salary = 100f;
+
+  public virtual float CalculatePay()
+  {
+    return salary;
+  }
+}
+
+// a child class
+public class HourlyEmployee : Employee
+{
+  private float rate = 9f;
+  private float hours = 100f;
+//where override takes place
+  public override float CalculatePay()
+  {
+    return rate * hours; // pay is calculated differently
+  }
+}
+
+
+Inheritance and Method Overriding are a powerful combination. Used together they provide a way to vary runtime behavior according to the context.
+The Liskov Substitution Principle (LSP) is one of the five SOLID principles of object-oriented programming. It states:
+
+“Objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program.”
+
+Key Idea
+A subclass should be able to stand in for its parent class without breaking functionality.
+ This ensures that the derived class extends the behavior of the base class without changing its fundamental behaviors
+
+ 
+// the parent class showing the "virtual" keyword included
+public abstract class Employee
+{
+  private string _employeeName;
+
+  // Notice the abstract method doesn't have a body at all (not even an empty one)
+  // and it is followed by a semicolon.
+  public abstract float CalculatePay();
+}
+
+// a child class
+public class SalaryEmployee : Employee
+{
+  private float salary = 100f;
+
+  public override float CalculatePay()
+  {
+    return salary;
+  }
+}
+
+// a child class
+public class HourlyEmployee : Employee
+{
+  private float rate = 9f;
+  private float hours = 100f;
+
+  public override float CalculatePay()
+  {
+    return rate * hours; // pay is calculated differently
+  }
+}
+
