@@ -17,7 +17,25 @@ class GoalManager
         while (!quit)
         {
             Console.Clear();
-            Console.WriteLine($"You have {_score} points.");
+            if (_score > 20000)
+                {
+                    Console.WriteLine($"[GOLD] You currently have {_score} points.");
+                    Console.WriteLine("Congrats on getting past 20,000 points! You are now in the Gold tier");
+                }
+                else if (_score > 10000)
+                {
+                    Console.WriteLine($"[Silver] You currently have {_score} points.");
+                    Console.WriteLine("Congrats on getting past 10,000 points! You are now in the Silver tier");
+                }
+                else if (_score > 1000)
+                {
+                    Console.WriteLine($"[Bronze] You currently have {_score} points.");
+                    Console.WriteLine("Congrats on getting past 1,000 points! You are now in the Bronze tier");
+                }
+                else
+                {
+                    Console.WriteLine($"You currently have {_score} points.");
+                }
             Console.WriteLine();
             Console.WriteLine("Menu Options:");
             Console.WriteLine("  1. Create New Goal");
@@ -46,7 +64,7 @@ class GoalManager
             }
             else if (choice == "4")
             {
-                Console.WriteLine("What is the filename?");
+                Console.WriteLine("What is the filename? (goal.txt) ");
                 string filename = Console.ReadLine();
                 LoadGoals(filename);
             }
@@ -66,12 +84,33 @@ class GoalManager
             {
                 Console.WriteLine("Invalid choice. Press any key to continue...");
                 Console.ReadKey();
+                Console.Clear();
             }
         }
     }
 
     public void DisplayPlayerInfo() {
-        Console.WriteLine($"You currently have {_score} points.");
+                
+        if (_score > 20000)
+        {
+            Console.WriteLine($"[GOLD] You currently have {_score} points.");
+            Console.WriteLine("Congrats on getting past 20,000 points! You are now in the Gold tier");
+        }
+        else if (_score > 10000)
+        {
+            Console.WriteLine($"[Silver] You currently have {_score} points.");
+            Console.WriteLine("Congrats on getting past 10,000 points! You are now in the Silver tier");
+        }
+        else if (_score > 1000)
+        {
+            Console.WriteLine($"[Bronze] You currently have {_score} points.");
+            Console.WriteLine("Congrats on getting past 1,000 points! You are now in the Bronze tier");
+        }
+        else
+        {
+            Console.WriteLine($"You currently have {_score} points.");
+        }
+
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
      }
@@ -90,6 +129,7 @@ class GoalManager
                 }
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
+                Console.Clear();
      }
     public void ListGoalDetails() {
         if (_goals.Count == 0)
@@ -113,11 +153,11 @@ class GoalManager
         Console.Write("Which type of goal would you like to create? ");
 
         string choice = Console.ReadLine();
-        Console.Write("What is the name of your goal?");
+        Console.Write("What is the name of your goal? ");
         string name = Console.ReadLine();
-        Console.Write("What is a short description of it?");
+        Console.Write("What is a short description of it? ");
         string description = Console.ReadLine();
-        Console.Write("What is the amount of ponts?");
+        Console.Write("What is the amount of ponts? ");
         int.TryParse(Console.ReadLine(), out int points);
         
         Goal newGoal = null;
@@ -165,7 +205,7 @@ class GoalManager
         else{
             Console.WriteLine("The goals are:");
             ListGoalDetails();
-            Console.WriteLine("Which goal did you finish?");
+            Console.WriteLine("Which goal did you finish? ");
 
             if (int.TryParse(Console.ReadLine(), out int index) && index >= 1 && index <= _goals.Count){
                 Goal goal = _goals[index - 1];
@@ -181,7 +221,26 @@ class GoalManager
                         _score += bonus;
                          Console.WriteLine($"You also earned a bonus of {bonus} points!");
                     }
-                    Console.WriteLine($"You now have {_score} points.");
+                    if (_score > 20000)
+                    {
+                        Console.WriteLine($"[GOLD] You currently have {_score} points.");
+                        Console.WriteLine("Congrats on getting past 20,000 points! You are now in the Gold tier");
+                    }
+                    else if (_score > 10000)
+                    {
+                        Console.WriteLine($"[Silver] You currently have {_score} points.");
+                        Console.WriteLine("Congrats on getting past 10,000 points! You are now in the Silver tier");
+                    }
+                    else if (_score > 1000)
+                    {
+                        Console.WriteLine($"[Bronze] You currently have {_score} points.");
+                        Console.WriteLine("Congrats on getting past 1,000 points! You are now in the Bronze tier");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You currently have {_score} points.");
+                    }
+
                 }
             }
             else
@@ -190,6 +249,7 @@ class GoalManager
                 }
         }
         Console.WriteLine("Press any key to continue...");
+        Console.Clear();
      }
 public void SaveGoals()
 {
@@ -235,6 +295,7 @@ public void SaveGoals()
 
     Console.WriteLine("Press any key to continue...");
     Console.ReadKey();
+    Console.Clear();
 }
 
 
@@ -263,8 +324,27 @@ public void LoadGoals(string filename)
             if (lines.Length > 0) {
                     if (int.TryParse(lines[0].Trim(), out int parsedScore))
                         {
-                        _score = parsedScore;  // Assign parsed score to _score
-                        Console.WriteLine($"Score loaded: {_score}");
+                        _score = parsedScore;  
+                        if (_score > 20000)
+                        {
+                            Console.WriteLine($"[GOLD] You currently have {_score} points.");
+                           
+                        }
+                        else if (_score > 10000)
+                        {
+                            Console.WriteLine($"[Silver] You currently have {_score} points.");
+                            
+                        }
+                        else if (_score > 1000)
+                        {
+                            Console.WriteLine($"[Bronze] You currently have {_score} points.");
+                            
+                        }
+                        else
+                        {
+                            Console.WriteLine($"You currently have {_score} points.");
+                        }
+
                         }
             }
             if (parts.Length < 4) 
@@ -319,6 +399,7 @@ public void LoadGoals(string filename)
     {
         Console.WriteLine($"File {fullPath} not found.");
     }
+    Console.Clear();
 }
 
 
