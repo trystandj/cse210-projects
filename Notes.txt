@@ -209,3 +209,72 @@ public class HourlyEmployee : Employee
   }
 }
 
+
+
+public void LoadGoals(string filename)
+{
+    if (File.Exists(filename))
+    {
+        _goals.Clear(); // Clear any existing goals
+
+        string[] lines = File.ReadAllLines(filename); // Read all lines from the file
+        foreach (string line in lines)
+        {
+            // Skip empty lines or lines that don't contain data
+            if (string.IsNullOrWhiteSpace(line)) continue;
+
+            string[] parts = line.Split(','); // Split by the colon to separate goal type and data
+
+            if (parts.Length < 4) 
+            {
+                Console.WriteLine($"Skipping invalid line: {line}");
+                continue; // Skip invalid lines
+            }
+
+            string goalType = parts[0].Trim(); // The type of goal (SimpleGoal, EternalGoal, etc.)
+            string name = parts[1].Trim(); // Name of the goal
+            string description = parts[2].Trim(); // Description of the goal
+            int points = int.TryParse(parts[3], out int parsedPoints) ? parsedPoints : 0; // Points for the goal
+
+            Goal newGoal = null; // Initialize goal as null
+
+            if (goalType == "SimpleGoal")
+            {
+                // Create SimpleGoal
+                newGoal = new SimpleGoal(name, description, points);
+                Console.WriteLine($"Loaded SimpleGoal: {name}");
+            }
+            else if (goalType == "EternalGoal")
+            {
+                // Create EternalGoal
+                newGoal = new EternalGoal(name, description, points);
+                Console.WriteLine($"Loaded EternalGoal: {name}");
+            }
+            else if (goalType == "ChecklistGoal" && parts.Length >= 6)
+            {
+                // Parse ChecklistGoal (which has extra fields for target and bonus)
+                int target = int.TryParse(parts[4], out int parsedTarget) ? parsedTarget : 0;
+                int bonus = int.TryParse(parts[5], out int parsedBonus) ? parsedBonus : 0;
+                
+                newGoal = new ChecklistGoal(name, description, points, target, bonus);
+                Console.WriteLine($"Loaded ChecklistGoal: {name}, Target: {target}, Bonus: {bonus}");
+            }
+            else
+            {
+                Console.WriteLine($"Invalid goal type or missing data: {line}");
+                continue;
+            }
+
+            if (newGoal != null)
+            {
+                _goals.Add(newGoal); // Add the goal to the list
+            }
+        }
+
+        Console.WriteLine("Goals loaded successfully.");
+    }
+    else
+    {
+        Console.WriteLine($"File {filename} not found.");
+    }
+}
