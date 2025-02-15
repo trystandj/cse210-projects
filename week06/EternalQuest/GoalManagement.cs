@@ -260,7 +260,13 @@ public void LoadGoals(string filename)
             if (string.IsNullOrWhiteSpace(line)) continue;
 
             string[] parts = line.Split(','); 
-
+            if (lines.Length > 0) {
+                    if (int.TryParse(lines[0].Trim(), out int parsedScore))
+                        {
+                        _score = parsedScore;  // Assign parsed score to _score
+                        Console.WriteLine($"Score loaded: {_score}");
+                        }
+            }
             if (parts.Length < 4) 
             {
                 Console.WriteLine($"Skipping invalid line: {line}");

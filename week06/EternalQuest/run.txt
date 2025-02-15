@@ -1,4 +1,4 @@
-0
+5000
 SimpleGoal,run,run a 5k,12000,False
 ChecklistGoal,read,read 5 book,20,0,10,2000
 ChecklistGoal,read,read 5 books,20,0,5,200
