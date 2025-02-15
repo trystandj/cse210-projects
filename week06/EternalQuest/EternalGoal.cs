@@ -12,11 +12,16 @@ class EternalGoal : Goal
 
     public override bool IsComplete()
     {
-        
+        return false;
     }
 
-    public override string GetStringRepresentation()
-    {
-        
-    }
+        public override string GetDetailsString()
+        {
+            return $"{_shortName}: {_description} ({_points} points per completion)";
+        }
+
+        public override string GetStringRepresentation()
+        {
+            return $"EternalGoal:{_shortName},{_description},{_points}";
+        }
 }

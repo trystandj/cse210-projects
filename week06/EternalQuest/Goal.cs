@@ -15,10 +15,8 @@ abstract class Goal
     public abstract bool IsComplete();
     
 
-    public virtual string GetDetailsString()
-    {
-       
-    }
+    public abstract string GetDetailsString();
+
 
     public abstract string GetStringRepresentation();
 }
