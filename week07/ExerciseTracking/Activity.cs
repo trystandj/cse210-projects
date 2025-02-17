@@ -11,7 +11,7 @@ abstract class Activity
         _minutes = minutes;
     }
 
-    public abstract string RecordEvent();
+    public abstract string GetSummary();
 
     public abstract double GetDistance();
 

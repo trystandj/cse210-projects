@@ -31,7 +31,7 @@ class Running : Activity
         return _minutes / _distance; 
     }
 
-    public override string RecordEvent() 
+    public override string GetSummary() 
     {
         return $"{_date} ({_minutes} min) - Distance: {GetDistance()} miles, Speed: {GetSpeed()} mph, Pace: {GetPace()} min per mile";
     }

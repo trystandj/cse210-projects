@@ -13,7 +13,7 @@ class Program
 
         foreach (var activity in activities)
         {
-            Console.WriteLine(activity.RecordEvent());
+            Console.WriteLine(activity.GetSummary());
         }
     }
 }
